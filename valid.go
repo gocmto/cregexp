@@ -5,6 +5,14 @@ import "regexp"
 const langRus = "rus"
 const langEng = "eng"
 
+// Checking the correctness of the telephone number
+// Pattern: ^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$
+// Examples: +7(903)888-88-88, +79161234567, 8(999)99-999-99, +380(67)777-7-777
+func CheckPhone(someString string) bool {
+	var valid = regexp.MustCompile(`^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$`)
+	return valid.MatchString(someString)
+}
+
 // Checking a Credit Card. 16 numbers. With spaces.
 // Pattern: (\d{4}\s([-]|)\d{4}\s([-]|)\d{4}\s([-]|)\d{4})
 func Card16Space(someString string) bool {
