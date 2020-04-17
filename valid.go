@@ -5,7 +5,20 @@ import "regexp"
 const langRus = "rus"
 const langEng = "eng"
 
-//
+// Checking a Credit Card. 16 numbers. With spaces.
+// Pattern: (\d{4}\s([-]|)\d{4}\s([-]|)\d{4}\s([-]|)\d{4})
+func Card16Space(someString string) bool {
+	var valid = regexp.MustCompile(`(\d{4}\s([-]|)\d{4}\s([-]|)\d{4}\s([-]|)\d{4})`)
+	return valid.MatchString(someString)
+}
+
+// Checking a Credit Card. 16 numbers. No spaces.
+// Pattern: (\d{4}([-]|)\d{4}([-]|)\d{4}([-]|)\d{4})
+func Card16NoSpace(someString string) bool {
+	var valid = regexp.MustCompile(`(\d{4}([-]|)\d{4}([-]|)\d{4}([-]|)\d{4})`)
+	return valid.MatchString(someString)
+}
+
 // Checking the correctness of the domain
 // Pattern: ^([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$
 func CheckDomain(someString string) bool {
